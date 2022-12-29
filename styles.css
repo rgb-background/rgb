@@ -1,0 +1,12 @@
+input[type='number']{
+    width: 125px;
+    color: black;
+} 
+input[type='range']{
+    width: 130px;
+}
+body {
+    background-color: black;
+    text-align: center;
+    margin-top: 500px;
+}

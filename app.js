@@ -2,7 +2,7 @@ window.addEventListener('resize', windowChanged);
 addEventListener("selectstart", event => event.preventDefault());
 
 function windowChanged() {
-    number = window.innerHeight/2
+    let number = window.innerHeight/2
     if (number > 20) {
         number -= 35
     }
@@ -10,9 +10,9 @@ function windowChanged() {
 }
 
 function sliderChange() {
-    redValue = document.getElementById("redRange").value
-    greenValue = document.getElementById("greenRange").value
-    blueValue = document.getElementById("blueRange").value
+    let redValue = document.getElementById("redRange").value
+    let greenValue = document.getElementById("greenRange").value
+    let blueValue = document.getElementById("blueRange").value
     console.log(redValue, greenValue, blueValue)
     document.getElementById("redNumber").value = parseInt(redValue)
     document.getElementById("greenNumber").value = parseInt(greenValue)
@@ -24,9 +24,9 @@ function sliderChange() {
 }
 
 function numberChange() {
-    redValue = document.getElementById("redNumber").value
-    greenValue = document.getElementById("greenNumber").value
-    blueValue = document.getElementById("blueNumber").value
+    let redValue = document.getElementById("redNumber").value
+    let greenValue = document.getElementById("greenNumber").value
+    let blueValue = document.getElementById("blueNumber").value
     if (redValue < 0 || redValue=="") {
         redValue = 0
         document.getElementById("redNumber").value = redValue
@@ -80,4 +80,28 @@ function numberChange() {
 
 function changeColor(r, g, b) {
     document.body.style.backgroundColor = "rgb("+r+","+g+","+b+")";
+    document.getElementById("inverse_color").style.color = "rgb("+(255-r)+","+(255-g)+","+(255-b)+")";
+    document.getElementById("inverse_color").innerHTML = rgbToHex(r, g, b)
+}
+
+function rgbToHex(r, g, b) {
+    let r16 = r/16
+    let g16 = g/16
+    let b16 = b/16
+    let rInHex = hex_value(Math.floor(r16)) + hex_value(((r16)-Math.floor(r16))*16)
+    let gInHex = hex_value(Math.floor(g16)) + hex_value(((g16)-Math.floor(g16))*16)
+    let bInHex = hex_value(Math.floor(b16)) + hex_value(((b16)-Math.floor(b16))*16)
+    let final_hex = "#" + rInHex + gInHex + bInHex
+    return(final_hex)
+}
+
+function hex_value(number) {
+    let numberToHexDict = {0: "0", 1: "1", 2: "2", 3: "3", 4: "4", 5: "5", 6: "6", 7: "7", 8: "8", 9: "9", 10: "A", 11: "B", 12: "C",
+     13: "D", 14: "E", 15: "F"}
+    return(numberToHexDict[number])
+}
+
+function pageLoaded() {
+    windowChanged()
+    sliderChange()
 }

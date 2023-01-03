@@ -1,10 +1,31 @@
 window.addEventListener('resize', windowChanged);
 addEventListener("selectstart", event => event.preventDefault());
 
+document.onkeydown = function(e) {
+    if (e.key == "s") {
+        let r = 255 - document.getElementById("redRange").value
+        let g = 255 - document.getElementById("greenRange").value
+        let b = 255 - document.getElementById("blueRange").value
+        document.getElementById("redRange").value = r
+        document.getElementById("greenRange").value = g
+        document.getElementById("blueRange").value = b
+        sliderChange()
+    }
+    if (e.key == "r") {
+        let r = Math.floor(Math.random() * 256)
+        let g = Math.floor(Math.random() * 256)
+        let b = Math.floor(Math.random() * 256)
+        document.getElementById("redRange").value = r
+        document.getElementById("greenRange").value = g
+        document.getElementById("blueRange").value = b
+        sliderChange()
+    }
+}
+
 function windowChanged() {
     let number = window.innerHeight/2
     if (number > 20) {
-        number -= 35
+        number -= 70
     }
     document.body.style.marginTop = number.toString() + "px"
 }

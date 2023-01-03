@@ -2,6 +2,8 @@ window.addEventListener('resize', windowChanged);
 addEventListener("selectstart", event => event.preventDefault());
 
 document.onkeydown = function(e) {
+    //s key: swap to inverse color
+    //r key: random color
     if (e.key == "s") {
         let r = 255 - document.getElementById("redRange").value
         let g = 255 - document.getElementById("greenRange").value
